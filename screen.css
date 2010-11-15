@@ -1,0 +1,12 @@
+#liteTabs { position: relative; margin: 0; padding: 0; overflow: hidden; width: 500px; font: 12px/14px Verdana, Arial, sans-serif }
+#liteTabs ul { margin: 0; padding: 0; overflow: hidden }
+#liteTabs li { float: left; list-style-type: none }
+#liteTabs a { display: block; text-decoration: none; outline: 0; background: #ccc; padding: 5px 10px }
+#liteTabs a.selected { background: #efefef }
+#liteTabs div { float: left; width: 100%; padding: 10px; margin-bottom: 10px; background: #efefef }
+#liteTabs div.selected { position: static }
+#liteTabs .pos { position: absolute; left: -9999px }
+
+.silver li {}
+
+.black li {}
