@@ -1,21 +1,40 @@
+/*******************************************
+
+	project:  liteTabs - Lightweight jQuery tabs plugin
+	author:   Nicola Hibbert
+	url:	  http://nicolahibbert.com/lightweight-jquery-tab-plugin/
+	demo:	  http://www.nicolahibbert.com/demo/liteTabs/
+
+	Copyright (c) 2010 Nicola Hibbert
+	License: Creative Commons 3.0 Attribution
+		http://creativecommons.org/licenses/by/3.0/
+
+/*******************************************/
 jQuery.fn.liteTabs = function(options) {
 
     var lt = this,
-	tab = lt.children('ul').find('a'),
-	div = lt.children('div'),
-	opts = jQuery.extend({
-	    height : 'auto',
-	    width : 500,
-	    hideHash : true,
-	    fadeIn : false,
-	    selectedTab : 1
-	}, options);
+		ul = lt.children('ul'),
+		tab = ul.find('a'),
+		div = lt.children('div'),
+		opts = jQuery.extend({
+			borders : false,
+			boxed : false,
+			colourScheme : false,
+			fadeIn : false,
+			height : 'auto',
+			hideHash : false,
+			rounded : false,
+			selectedTab : 1,
+			width : 500
+		}, options);
 
-    // prog. enhancement: set position w/ js -> tabs visible when js disabled
-    // option: set height
+	// set liteTabs class for css
+	lt.addClass('liteTabs');
+
+    // option: set overall height
     div.addClass('pos').height(opts.height).width(opts.width - 20);
 
-    // option: set width
+    // option: set overall width
     lt.width(opts.width);
 
 	// on tab click...
@@ -40,9 +59,24 @@ jQuery.fn.liteTabs = function(options) {
     });
 
     // option: set selected tab
-    if (typeof opts.selectedTab === 'number' && opts.selectedTab > 0) {
+    if (opts.selectedTab) {
 		tab.eq(--opts.selectedTab).click();
     }
+
+	// option: set rounded corners
+	if (opts.rounded) {
+		lt.addClass('rounded');
+	}
+
+	// option: set borders
+	if (opts.borders) {
+		lt.addClass('borders');
+		div.width(div.width() - 2);	// need to fix this
+	}
+
+	if (opts.boxed) {
+		lt.addClass('boxed');
+	}
 
     return lt;
 
