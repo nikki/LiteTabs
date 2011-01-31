@@ -1,24 +1,21 @@
-/*******************************************
-
-	project:  liteTabs - Lightweight jQuery tabs plugin
-	author:   Nicola Hibbert
-	url:	  http://nicolahibbert.com/lightweight-jquery-tab-plugin/
-	demo:	  http://www.nicolahibbert.com/demo/liteTabs/
-
-	Copyright (c) 2010-2011 Nicola Hibbert
-	License: Creative Commons 3.0 Attribution
-		http://creativecommons.org/licenses/by/3.0/
-
-/*******************************************/
-
-(function($) {
+/*************************************************
+*
+*	project:  	liteTabs - Lightweight jQuery tabs plugin
+*	author:   	Nicola Hibbert
+*	url:	  	http://nicolahibbert.com/lightweight-jquery-tab-plugin/
+*	demo:	  	http://www.nicolahibbert.com/demo/liteTabs/
+*
+*	Version:  	0.1.0
+*	Copyright: 	(c) 2010-2011 Nicola Hibbert
+*	License: 	MIT
+*
+/*************************************************/
+;(function($) {
 
 	$.fn.liteTabs = function(options) {
-		var lt = this,
-		ul = lt.children('ul'),
-		tab = ul.find('a'),
-		div = lt.children('div'),
-		opts = jQuery.extend({
+		
+		// defaults
+		var defaults = {
 			borders : false,
 			boxed : false,
 			colourScheme : false,
@@ -27,64 +24,59 @@
 			hideHash : false,
 			rounded : false,
 			selectedTab : 1,
-			width : 500
-		}, options);
+			width : 500			
+		},
+		
+		// merge defaults with options in new settings object
+		settings = $.extend({}, defaults, options),
+				
+		// define key variables
+		$this = this,
+		$ul = $this.children('ul'),
+		$tab = $ul.find('a'),
+		$div = $('> div', $this);
 
-		return this.each(function() {
+		// set liteTabs class for css & set optional overall width
+		$this.addClass('liteTabs').width(settings.width);
 
-			// set liteTabs class for css
-			lt.addClass('liteTabs');
-
-			// option: set overall height
-			div.addClass('pos').height(opts.height).width(opts.width - 20);
-
-			// option: set overall width
-			lt.width(opts.width);
-
-			// on tab click...
-			tab.click(function(e) {
-
-				// default: add selected class to tab
-				tab.removeClass('selected').filter(this).addClass('selected');
-
-				// option: fade in divs
-				if (opts.fadeIn) {
-					div.removeClass('selected').filter('[name=' + this.hash + ']').hide().addClass('selected').fadeIn();
-				} else {
-					// default: add selected class to div
-					div.removeClass('selected').filter('[name=' + this.hash + ']').addClass('selected');
-				}
-
-				// option: hide hash change
-				if (opts.hideHash) {
-					e.preventDefault();
-				}
-
-			});
-
-			// option: set selected tab
-			if (opts.selectedTab) {
-				tab.eq(--opts.selectedTab).click();
-			}
-
-			// option: set rounded corners
-			if (opts.rounded) {
-				lt.addClass('rounded');
-			}
-
-			// option: set borders
-			if (opts.borders) {
-				lt.addClass('borders');
-				div.width(div.width() - 2);	// need to fix this
-			}
-
-			if (opts.boxed) {
-				lt.addClass('boxed');
-			}
-
-			return lt;
-
+		// option: set overall height
+		$div.css({
+			height : settings.height,
+			width : settings.width - 20, // rewrite
+			position : 'absolute',
+			left : -9999
 		});
+
+		// on tab click...
+		$tab.click(function(e) {
+			var filterHash = $div.removeClass('selected').filter('[name=' + this.hash + ']');
+			
+			// defaults: add selected class to tab
+			$tab.removeClass('selected').filter(this).addClass('selected');
+
+			// option: fade in divs
+			(settings.fadeIn) ? filterHash.hide().addClass('selected').fadeIn() : filterHash.addClass('selected');
+
+			// option: hide hash change
+			settings.hideHash && e.preventDefault();
+
+		});	
+
+		// option: set selected tab
+		settings.selectedTab && $tab.eq(settings.selectedTab - 1).click();
+
+		// option: set rounded corners
+		settings.rounded && $this.addClass('rounded');
+
+		// option: set borders
+		settings.borders && $this.addClass('borders') && $div.width($div.width() - 2); // rewrite
+
+		// option: set boxed
+		settings.boxed && $this.addClass('boxed');
+
+		return $this;
+		
+		// TODO: need to enable back button support
 	};
 
 })(jQuery);

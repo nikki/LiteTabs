@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>liteTabs</title>
-    <link href="screen.css" rel="stylesheet">
+    <title>liteTabs - a lightweight jQuery tabs plugin</title>
 	<style>
-		html { font: 12px/14px Verdana, Arial, sans-serif; background: #e3e3e3 }
-		h1 { margin: 0 0 20px 0; padding: 20px 0; border-bottom: 2px solid black }
-		h2 { margin: 20px 0; font-size: 18px }
-		p { clear: both; padding-top: 20px }
-		.float { width: 540px; float: left }
+		body { font: 14px/24px 'Helvetica Neue', Arial, sans-serif; color: #333; width: 1100px; margin: 30px auto 0; background: #eee }
+		h1 { text-align: center; margin-bottom: 30px; text-shadow: 1px 1px 0 white }
+		h2 { margin: 30px 0 15px; text-shadow: 1px 1px 0 white }
+		p { padding: 0; margin: 0 }
+		.tested { clear: both; padding: 20px 0 10px }
+		.float { width: 540px; float: left; margin-right: 20px }
+		.float + .float { margin: 0 }
 	</style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-    <script src="liteTabs.jQuery.js"></script>
-    <script>
+    <link href="litetabs.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="litetabs.jquery.js"></script>
+	<script>
         $(function(){
             $('.example-1').liteTabs();
 			$('.example-2').liteTabs({ rounded: true });
@@ -26,7 +28,11 @@
 </head>
 <body>
 
-	<h1>liteTabs plugin Demo</h1>
+	<h1>liteTabs - a lightweight tabs plugin for jQuery</h1>
+	
+	<h2>Download</h2>
+	<p>Get liteTabs from <a href="https://github.com/nikki-h/liteTabs">Github</a> - only 2kb JS uncompressed and unminified.</p>
+	
 	<div class='float'>
 		<h2>Default settings</h2>
 		<div class="example-1">
@@ -193,6 +199,7 @@
 		</div>
 	</div>
 
-	<p>Tested in IE6, IE7, IE8, FF3.6, Chrome 8, Safari 5 & Opera 10.6</p>
+	<p class="tested">Tested in IE6, IE7, IE8, FF3.6, Chrome 8, Safari 5 & Opera 10.6</p>
+	
 </body>
 </html>
