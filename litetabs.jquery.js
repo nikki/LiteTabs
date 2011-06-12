@@ -42,6 +42,7 @@
     		// option: set overall height
     		$div.css({
     			height : settings.height,
+    			width : settings.width - (parseInt($div.css('padding-left')) + parseInt($div.css('padding-right'))),
     			position : 'absolute',
     			left : -9999
     		});
@@ -58,6 +59,7 @@
 
     			// option: hide hash change
     			settings.hideHash && e.preventDefault();
+
     		});	
 
     		// option: set selected tab
