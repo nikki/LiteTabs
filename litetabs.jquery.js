@@ -22,11 +22,12 @@
 				boxed: false,
 				fadeIn: false,
 				height: 'auto',
-				hideHash: true,
+				hideHash: false,
 				rounded: false,
 				selectedTab: 1,
 				width: 'auto'
 			},
+			first_load = true,
 
 			// merge defaults with options in new settings object
 			settings = $.extend({}, defaults, options),
@@ -50,10 +51,21 @@
 
 			// on tab click...
 			$tab.click(function(e) {
-				var filterHash = $div.removeClass('selected').filter('[name=' + this.hash + ']');
+				hash = this.hash;
+
+				// On first load, check URL fragments for valid hashs.
+				if (first_load && window.location.hash) {
+					if ($div.filter( window.location.hash + '_')) {
+						hash = window.location.hash;
+					}
+				}
+				first_load = false;
+				// The div's id has a trailing underscore to prevent
+				// the url fragment from scrolling the page.
+				var filterHash = $div.removeClass('selected').filter(hash + '_');
 
 				// defaults: add selected class to tab
-				$tab.removeClass('selected').filter(this).addClass('selected');
+				$tab.removeClass('selected').filter('[href=' + hash + ']').addClass('selected');
 
 				// option: fade in divs
 				(settings.fadeIn) ? filterHash.hide().addClass('selected').fadeIn() : filterHash.addClass('selected');
