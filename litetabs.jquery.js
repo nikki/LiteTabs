@@ -1,15 +1,16 @@
-/*************************************************
-*
-*	project:  	liteTabs - Lightweight jQuery tabs plugin
-*	author:   	Nicola Hibbert
-*	url:	  	http://nicolahibbert.com/lightweight-jquery-tab-plugin/
-*	demo:	  	http://www.nicolahibbert.com/demo/liteTabs/
-*
-*	Version:  	1.0.0
-*	Copyright: 	(c) 2010-2011 Nicola Hibbert
-*	License: 	MIT
-*
-/*************************************************/
+/**
+ * @preserve
+ *
+ *	Project:    liteTabs - Lightweight jQuery tabs plugin
+ *	Author:     Nicola Hibbert
+ *	Url:        http://nicolahibbert.com/lightweight-jquery-tab-plugin/
+ *	Demo:       http://www.nicolahibbert.com/demo/liteTabs/
+ *
+ *	Version:    1.0.0
+ *	Copyright:  (c) 2010-2011 Nicola Hibbert
+ *	License:    MIT
+ *
+ */
 ;(function($) {
 
 	$.fn.liteTabs = function(options) {
