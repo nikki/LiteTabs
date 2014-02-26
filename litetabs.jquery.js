@@ -25,7 +25,7 @@
 				hideHash: true,
 				rounded: false,
 				selectedTab: 1,
-				width: 500
+				width: 'auto'
 			},
 
 			// merge defaults with options in new settings object
@@ -70,7 +70,7 @@
 			settings.rounded && $this.addClass('rounded');
 
 			// option: set borders
-			settings.borders && $this.addClass('borders') && $div.width($div.width() - (parseInt($div.css('border-left-width')) + parseInt($div.css('border-right-width'))));
+			settings.borders && $this.addClass('borders') && settings.width != 'auto' && $div.width($div.width() - (parseInt($div.css('border-left-width')) + parseInt($div.css('border-right-width'))));
 
 			// option: set boxed
 			settings.boxed && $this.addClass('boxed');
