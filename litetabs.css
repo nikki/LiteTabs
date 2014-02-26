@@ -15,7 +15,7 @@
 .liteTabs a:hover { background: #999 }
 .liteTabs a:focus { text-decoration: underline }
 .liteTabs a.selected, .liteTabs a.selected:hover { background: white }
-.liteTabs div { float: left; width: 100%; padding: 10px; background: white }
+.liteTabs div { padding: 10px; background: white }
 .liteTabs div.selected { position: static !important }
 
 /*************************************** Rounded */
